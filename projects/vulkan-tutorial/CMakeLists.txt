@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.15 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.18 FATAL_ERROR)
 
 set(EXECUTABLE_NAME VulkanTutorial)
 
@@ -7,6 +7,9 @@ project("${EXECUTABLE_NAME}")
 file(GLOB_RECURSE sources CONFIGURE_DEPENDS src/*.cpp src/*.h)
 add_executable(${EXECUTABLE_NAME} ${sources})
 
+#NOTE: macOS: After installing Vulkan SDK, you must have environment variable pointing to the SDK lcation. see https://github.com/KhronosGroup/MoltenVK/issues/116
+# VULKAN_SDK=/path/to/vulkansdk/macOS
+# I added the above to my ~/.bash_profile, but on mac I needed to restart the computer before it would be detected by vscode (even after clearing cmake cache)
 #NOTE: Vulkan is not all capitalized, and the generated variables are not all caplital.
 find_package(Vulkan REQUIRED)
 message("VULKAN_FOUND: " ${VULKAN_FOUND})
